@@ -11,9 +11,20 @@ public class FloorMaker : MonoBehaviour {
 // translate the basic pseudocode here into C#
 
 //	DECLARE CLASS MEMBER VARIABLES:
-//	Declare a private integer called myCounter that starts at 0; 		// count how many floor tiles this FloorMaker has instantiated
+//	Declare a private integer called myCounter that starts at 0; 	
+// count how many floor tiles this FloorMaker has instantiated
+public RestartManager RestartManager;
+public static int myCounter = 0;
 //	Declare a public Transform called floorPrefab, assign the prefab in inspector;
+public Transform floorPreFab; // assign in inspector
 //	Declare a public Transform called floorMakerPrefab, assign the prefab in inspector; 
+public Transform eyePreFab;
+public Transform nosePreFab;
+public Transform mouthPreFab;
+public Transform floorMakerPreFab; //assign in inspector
+public static List<Transform> floorlist = new List<Transform> ();
+public float maxfloorCount = 20;
+
 
 	void Update () {
 //		If counter is less than 50, then:
@@ -28,8 +39,34 @@ public class FloorMaker : MonoBehaviour {
 //			Increment counter;
 //		Else:
 //			Destroy my game object; 		// self destruct if I've made enough tiles already
+		if(myCounter < maxfloorCount){
+			float randomNumber = Random.Range(0.0f,1.0f);
+			if(randomNumber < 0.1f){
+				transform.Rotate(0f,0f,90f);
+			} else if (randomNumber < 0.2f){
+				this.transform.Rotate(0f,0f,-90f);
+			} else if (randomNumber > 0.98f && randomNumber <= 1f){
+				Instantiate(floorMakerPreFab, transform.position, transform.rotation);
+			} 
+			float faceRandomizer = Random.Range(0.0f,1.0f);
+			if(faceRandomizer <0.5){
+				Transform newpart = Instantiate(eyePreFab,this.transform.position,this.transform.rotation);
+				floorlist.Add(newpart);
+				myCounter++;
+			} else if (faceRandomizer<0.65 && faceRandomizer>0.5) {
+				Transform newpart = Instantiate(nosePreFab,this.transform.position,this.transform.rotation);
+				floorlist.Add(newpart);
+				myCounter++;
+			} else {
+				Transform newpart = Instantiate(mouthPreFab,this.transform.position,this.transform.rotation);
+				floorlist.Add(newpart);
+				myCounter++;
+			}
+			transform.Translate(0f,1f,0f);
+		} else {
+			Destroy(gameObject);
+		}
 	}
-
 } // don't delete, end of FloorMaker class
 
 
