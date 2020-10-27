@@ -23,7 +23,7 @@ public Transform nosePreFab;
 public Transform mouthPreFab;
 public Transform floorMakerPreFab; //assign in inspector
 public static List<Transform> floorlist = new List<Transform> ();
-public float maxfloorCount = 20;
+public float maxfloorCount = 300;
 
 
 	void Update () {

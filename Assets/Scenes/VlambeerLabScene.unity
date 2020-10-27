@@ -1291,7 +1291,7 @@ PrefabInstance:
     - target: {fileID: 8526925960506713578, guid: a343cdd1062858847ae9e98a9a159ec1,
         type: 3}
       propertyPath: maxfloorCount
-      value: 50
+      value: 300
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a343cdd1062858847ae9e98a9a159ec1, type: 3}
